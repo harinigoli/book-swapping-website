@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Swapping Website</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lightblue;
+            background-image: url("./book-6.jpg");
+            background-size: 500px;
+            background-position: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            background-color: dodgerblue;
+            color: darkmagenta;
+        }
+        h2 {
+            text-align: center;
+            background-color: darkorchid;
+            color: lightblue;
+        }
+         h3 {
+            text-align: center;
+            background-color: yellowgreen;
+            color: lightblue;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 90px;
+            width: 100%;
+            height: 20px;
+            background-color: red;
+            color: lightblue;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .book-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .book-list li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .user-profile {
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: aqua;
+        }
+        .user-profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Swapping Website</h1>
+            <nav>
+                <ul>
+                    <li><a href="./book store management system.html">Home</a></li>
+                    <li><a href="./books.html">Books</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="user-profile">
+            <img src="./book-1.jpg" alt="User Avatar">
+            <img src="./book-2.jpg" alt="">
+            <img src="./blog-7.jpg" alt="">
+            <h3>User's Name</h3>
+            <p>User's Location</p>
+        </section>
+
+        <h2>Add a Book</h2>
+        <form id="book-form">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <select id="genre" required>
+                <option value="" disabled selected>Select Genre</option>
+                <option value="fiction">Fiction</option>
+                <option value="non-fiction">Non-Fiction</option>
+                <option value="sci-fi">Science Fiction</option>
+                <option value="fantasy">Fantasy</option>
+                <!-- Add more genres as needed -->
+            </select>
+            <button type="submit">Add Book</button>
+        </form>
+
+        <h2>Available Books</h2>
+        <ul id="book-list" class="book-list"></ul>
+    </div>
+
+    <script>
+        const bookForm = document.getElementById('book-form');
+        const titleInput = document.getElementById('title');
+        const authorInput = document.getElementById('author');
+        const genreInput = document.getElementById('genre');
+        const bookList = document.getElementById('book-list');
+
+        bookForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = titleInput.value.trim();
+            const author = authorInput.value.trim();
+            const genre = genreInput.value;
+            if (title !== '' && author !== '' && genre !== '') {
+                addBook(title, author, genre);
+                titleInput.value = '';
+                authorInput.value = '';
+                genreInput.value = '';
+            }
+        });
+
+        function addBook(title, author, genre) {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>Title:</strong> ${title}<br><strong>Author:</strong> ${author}<br><strong>Genre:</strong> ${genre}`;
+            bookList.appendChild(li);
+        }
+    </script>
+</body>
+</html>
